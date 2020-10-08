@@ -41,7 +41,6 @@ python3 manage.py runserver
 ### Используемые библиотеки
 
 - [Leaflet](https://leafletjs.com/) — отрисовка карты
-- [loglevel](https://www.npmjs.com/package/loglevel) – логирование
 - [Bootstrap](https://getbootstrap.com/) — CSS библиотека
 - [Vue.js](https://ru.vuejs.org/) — реактивные шаблоны на фронтенде
 
