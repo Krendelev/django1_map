@@ -4,7 +4,12 @@
 
 ![Скриншот](screenshot.jpg)
 
-[Демо-версия сайта](https://tobeadded)
+[Демоверсия сайта](https://krendelev.pythonanywhere.com)
+
+[Интерфейс администратора](https://krendelev.pythonanywhere.com/admin/)
+
+Логин: testuser
+Пароль: testuserpass
 
 ## Запуск
 
