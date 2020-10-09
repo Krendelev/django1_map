@@ -9,7 +9,7 @@
 [Интерфейс администратора](https://krendelev.pythonanywhere.com/admin/)
 
 Логин: testuser
-Пароль: testuserpass
+Пароль: testpass123
 
 ## Запуск
 
