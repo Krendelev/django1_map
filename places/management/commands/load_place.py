@@ -28,7 +28,6 @@ class Command(BaseCommand):
             longitude=place["coordinates"]["lng"],
             latitude=place["coordinates"]["lat"],
         )
-        obj.save()
 
         missed_images = []
         for idx, url in enumerate(place["imgs"], start=1):
