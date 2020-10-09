@@ -43,6 +43,14 @@ python3 manage.py runserver
 - `SECRET_KEY` — секретный ключ проекта
 - `DATABASE_NAME` — путь до базы данных, например: `places.sqlite3`
 
+## Добавление объектов в базу данных
+
+Для добавления объекта запустите команду `load_place`, передав аргументом ссылку на описание объекта в формате `json`.
+
+```sh
+python3 manage.py load_place http://адрес/файла.json
+```
+
 ### Используемые библиотеки
 
 - [Leaflet](https://leafletjs.com/) — отрисовка карты
