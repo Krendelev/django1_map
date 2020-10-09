@@ -7,7 +7,7 @@ from places.models import Photo, Place
 
 
 class Command(BaseCommand):
-    help = "Заполняет базу предоставленными данными"
+    help = "Добавляект объект в базу данных"
 
     def add_arguments(self, parser):
         parser.add_argument("url", nargs="+")
@@ -35,7 +35,7 @@ class Command(BaseCommand):
             image, _ = Photo.objects.get_or_create(place=obj, position=idx)
             image_name = Path(url).name
             try:
-                response = requests.get(url)
+                response = requests.get(url, timeout=5)
                 response.raise_for_status()
             except (requests.HTTPError, requests.ConnectionError) as err:
                 missed_images.append(image_name)
