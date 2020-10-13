@@ -49,6 +49,7 @@
 
     {{ places|json_script:"places-geojson" }}
 
+    {% verbatim %}
     <script id="app-template" type="text/template">
     <div v-bind:class="{'sidebar-content': 1, 'bg-white': selectedPlace, 'bg-secondary': !selectedPlace}">
       <div v-if="promptVisible" class="d-flex flex-column justify-content-center align-items-center" style="height: 100%;">
@@ -66,9 +67,9 @@
 
         <img v-if="mainPhotoSrc" v-bind:src="mainPhotoSrc" class="d-block shadow mb-3 rounded" v-bind:alt="selectedPlace.title">
 
-        <h5 class="mb-3">{% verbatim  %}{{ selectedPlace.title }}{% endverbatim  %}</h5>
+        <h5 class="mb-3">{{ selectedPlace.title }}</h5>
 
-        <p>{% verbatim  %}{{ selectedPlace.short_description }}{% endverbatim  %}</p>
+        <p>{{ selectedPlace.short_description }}</p>
 
         <div id="place-photos" class="carousel slide mb-3 shadow" data-ride="carousel" data-interval="5000">
           <ol class="carousel-indicators">
@@ -99,6 +100,7 @@
       </div>
     </div>
   </script>
+  {% endverbatim  %}
 
   </head>
 

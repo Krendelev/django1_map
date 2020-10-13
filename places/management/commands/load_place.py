@@ -13,25 +13,23 @@ class Command(BaseCommand):
         parser.add_argument("url", nargs="+")
 
     def handle(self, *args, **options):
-        try:
-            response = requests.get(*options["url"], timeout=5)
-            response.raise_for_status()
-        except (requests.HTTPError, requests.ConnectionError) as err:
-            self.stderr.write(self.style.ERROR(err))
-            exit()
+        response = requests.get(*options["url"], timeout=5)
+        response.raise_for_status()
+        place_info = response.json()
 
-        place = response.json()
-        obj, _ = Place.objects.get_or_create(
-            title=place["title"],
-            description_short=place["description_short"],
-            description_long=place["description_long"],
-            longitude=place["coordinates"]["lng"],
-            latitude=place["coordinates"]["lat"],
+        place, created = Place.objects.get_or_create(
+            title=place_info["title"],
+            defaults={
+                "short_description": place_info["description_short"],
+                "long_description": place_info["description_long"],
+                "longitude": place_info["coordinates"]["lng"],
+                "latitude": place_info["coordinates"]["lat"],
+            },
         )
 
         missed_images = []
-        for idx, url in enumerate(place["imgs"], start=1):
-            image, _ = Photo.objects.get_or_create(place=obj, position=idx)
+        for index, url in enumerate(place_info["imgs"], start=1):
+            image, created = Photo.objects.get_or_create(place=place, position=index)
             image_name = Path(url).name
             try:
                 response = requests.get(url, timeout=5)
@@ -47,5 +45,5 @@ class Command(BaseCommand):
             )
 
         self.stdout.write(
-            self.style.SUCCESS(f"Объект {place['title']} успешно добавлен в базу")
+            self.style.SUCCESS(f"Объект {place_info['title']} успешно добавлен в базу")
         )

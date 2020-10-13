@@ -37,9 +37,9 @@ class PlaceDetails(DetailView):
         context = super().get_context_data(**kwargs)
         place = self.get_object()
         context["place"] = {"title": place.title}
-        context["place"]["imgs"] = [obj.photo.url for obj in place.place_photos.all()]
-        context["place"]["description_short"] = place.description_short
-        context["place"]["description_long"] = place.description_long
+        context["place"]["imgs"] = [obj.photo.url for obj in place.photos.all()]
+        context["place"]["description_short"] = place.short_description
+        context["place"]["description_long"] = place.long_description
         context["place"]["coordinates"] = {
             "lat": place.latitude,
             "lng": place.longitude,
